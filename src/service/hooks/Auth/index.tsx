@@ -4,8 +4,8 @@ import { Nullable } from 'typescript-nullable';
 import { useCallback, useState } from 'react';
 
 const loginConfig = {
-  url: Auth.loginUrl,
-  method: 'POST'
+  method: 'POST',
+  url: Auth.loginUrl
 };
 
 // creamos hook personalizado para mantener el login declarativo
@@ -27,8 +27,8 @@ export const useLogin = () =>{
 
     return execute({
       data:{
-        username,
-        password
+        password,
+        username
       }
     });
   }, []);

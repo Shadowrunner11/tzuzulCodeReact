@@ -43,17 +43,17 @@ const Login = () => {
 
 const useStyles = makeStyles()(({palette, spacing}) => {
   return {
+    button:{
+      backgroundColor: palette.primary.dark,
+      color: palette.text.primary,
+      width: '100%'
+    },
     root: {
       display: 'flex',
       flexDirection: 'column',
       gap: spacing(2),
-      width: '50vw',
-      maxWidth: spacing(60)
-    },
-    button:{
-      color: palette.text.primary,
-      backgroundColor: palette.primary.dark,
-      width: '100%'
+      maxWidth: spacing(60),
+      width: '50vw'
     }
   };
 });
