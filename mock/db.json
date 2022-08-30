@@ -4,6 +4,28 @@
       "email": "asdasdsad@adasd.com",
       "password": "$2a$10$UezQ1qC/NeNUYqNgx7QMrePQwCw3cTVhRkHWnq5qMxsDJttah8/Wq",
       "id": 1
+    },
+    {
+      "email": "pieroramirez810@gmail.com",
+      "password": "$2a$10$YXa8CxS9pky/Rnv4uwdHW.HstShivXj8bPS4mEYmvsX2oIwy6ldmm",
+      "username": "pieroramirez810@gmail.com",
+      "password2": "12345678",
+      "name": "Piero",
+      "lastname": "Ramirez",
+      "gender": "MALE",
+      "date": "2022-08-30T05:00:00.000Z",
+      "id": 2
+    },
+    {
+      "email": "pieroramirez8asdasd10@gmail.com",
+      "password": "$2a$10$bVUgxM04.L6mxSwAvsfPBeEWwKkfcsUj815gwLerrhOui1ng0DRcu",
+      "username": "pieroramirez810@gmail.com",
+      "password2": "12345678",
+      "name": "Piero",
+      "lastname": "Ramirez",
+      "gender": "MALE",
+      "date": "2022-08-30T05:00:00.000Z",
+      "id": 3
     }
   ]
 }

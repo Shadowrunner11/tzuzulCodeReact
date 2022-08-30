@@ -1,11 +1,16 @@
 import useAxios from 'axios-hooks';
 import Auth from '../../Auth';
 import { Nullable } from 'typescript-nullable';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 const loginConfig = {
   method: 'POST',
   url: Auth.loginUrl
+};
+
+const registerCofig = {
+  method: 'POST',
+  url: Auth.registerUrl
 };
 
 // creamos hook personalizado para mantener el login declarativo
@@ -15,30 +20,39 @@ const loginConfig = {
  *  de axios, intercepta errores comunes
  */
 export const useLogin = () =>{
-  const [ isValid, setIsValid ] = useState(true);
   const [{ data, loading, error }, execute] = useAxios( loginConfig,{ manual: true });
-
   // funcion impura, buscar alternativas
-  const executeLogin = useCallback((username: Nullable<string>, password: Nullable<string>) => {
-    if(!username && !password)
-      return setIsValid(false);
-
-    setIsValid(true);
-
+  const executeLogin = useCallback((email: Nullable<string>, password: Nullable<string>) => {
     return execute({
       data:{
-        password,
-        username
+        email,
+        password
       }
     });
   }, []);
 
   // no esta justificado un use memo, error siempre cambia
   const errorBoundary = {
-    invalidInput: Boolean(error && error.code == '403') || !isValid,
-    netWorkError: Boolean(error && error.code !== '403') && isValid
+    invalidInput: Boolean(error && error.code === '403')
+    //borrar esta linea solo es para mocking
+      || error?.response?.data === 'Cannot find user' ,
+    netWorkError: Boolean(error && error.code !== '403')
+    //borrar esta linea solo es para mocking
+      && error?.response?.data !== 'Cannot find user' ,
   };
 
 
   return [loading, errorBoundary, data, executeLogin];
+};
+
+export const useRegister = ()=>{
+  const [{ data, loading, error }, execute] = useAxios(registerCofig,{ manual: true });
+
+  const executeRegister = useCallback((data : any)=>{
+    return execute({
+      data
+    });
+  }, []);
+
+  return [loading, error, data, executeRegister ];
 };

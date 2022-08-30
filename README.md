@@ -12,7 +12,8 @@ Revisar el package json para iniciar proyecto
 - [] Crear sh para el deploy o buscar un gihub actions work flow cada vez que se pushea a main
 - [x] Deprecar el axios service y usar axios-hooks
 - [x] Extender axios-hook para el login
-- [] Deprecar las validaciones en el hook personalizado y usar formik con yup
+- [x] Deprecar las validaciones en el hook personalizado y usar formik con yup
+- [x] Dperecar formik por ser controllado y usar react-form-hooks (es muy bueno)
 - Configurar envs
 - [x] Extender eslinter, props en orden alfabetico, sino me pierdo
 - [] Escribir tests

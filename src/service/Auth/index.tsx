@@ -8,6 +8,8 @@ interface ILoginConfig {
 class AuthService{
   private _baseUrl = 'http://localhost:3000';
   private _loginUrl = this._baseUrl+'/login';
+  private _registerUrl = this._baseUrl+'/register';
+
   async login(body: ILoginConfig){
     axios.post(`${this._baseUrl}/login`, body);
   }
@@ -18,6 +20,10 @@ class AuthService{
 
   get loginUrl(){
     return this._loginUrl;
+  }
+
+  get registerUrl(){
+    return this._registerUrl;
   }
 }
 
