@@ -1,15 +1,13 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { makeStyles } from 'tss-react/mui';
-import { Box, Button, MenuItem, TextField } from '@mui/material';
+import { Box, MenuItem, TextField } from '@mui/material';
 import schema from './validations';
 import { Gender } from '../../types/constants';
 import { useCallback } from 'react';
 import { useRegister } from '../../service/hooks/Auth';
 import { LoadingButton } from '@mui/lab';
-
-dayjs().format();
 
 const genderList  = Object.entries(Gender);
 

@@ -26,6 +26,17 @@
       "gender": "MALE",
       "date": "2022-08-30T05:00:00.000Z",
       "id": 3
+    },
+    {
+      "email": "foobar@exampsle.com",
+      "password": "$2a$10$SVAflL.IDJ7iNmNKX.LmLu8N5JDNPH.dryvZ/qkt7jRVJJO/vKyju",
+      "username": "jessica.villegas@laborum.pe",
+      "password2": "12345678",
+      "name": "Piero",
+      "lastname": "Ramirez",
+      "gender": "MALE",
+      "date": "2022-08-30T05:00:00.000Z",
+      "id": 4
     }
   ]
 }
