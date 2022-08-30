@@ -5,7 +5,7 @@ import Register from '../Register';
 
 const MainRouter = ()=>{
   return(
-    <BrowserRouter>
+    <BrowserRouter basename='/tzuzulCodeReact'>
       <Nav />
       <Routes>
         <Route element={<Register />} path='/singup' />
