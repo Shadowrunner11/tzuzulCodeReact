@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useContext, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { makeStyles } from 'tss-react/mui';
@@ -11,11 +11,16 @@ import { useLogin } from '../../service/hooks/Auth';
 import schema from './validation';
 import KeySvg from '../../components/KeySvg';
 
+import { AuthContext } from '../MainRouter';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
   const { classes } = useStyles();
+  const navigate = useNavigate();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { sessionAuth } = useContext(AuthContext);
 
   const { register, formState: { errors }, handleSubmit } = useForm({
     resolver: yupResolver(schema)
@@ -25,7 +30,11 @@ const Login = () => {
 
   const _handleAuth = useCallback(handleSubmit((data: FieldValues) => {
     const { email, password } = data;
-    login(email,password);
+    login(email,password)
+      .then(({data : {phpssid, username}}: any)=>{
+        sessionAuth(phpssid, username);
+        navigate('/calendar');
+      });
   })
   ,[]);
 
@@ -61,7 +70,6 @@ const Login = () => {
       label='Password'
       type={isPasswordVisible ? 'text' : 'password'}/>
   );
-
 
   return (
     <Box className={classes.root} component='form' onSubmit={_handleAuth}>

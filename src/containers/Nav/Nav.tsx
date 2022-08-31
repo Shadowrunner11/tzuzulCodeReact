@@ -1,32 +1,30 @@
-import { Box, Button } from '@mui/material';
-import { useContext } from 'react';
+import clsx from 'clsx';
+import { Box } from '@mui/material';
+import { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui';
 import { ColorModeContext } from '../../App';
 import ReactIcon from '../../assets/react.svg';
 import ModeSwitcher from '../../components/ModeSwitcher';
-import clsx from 'clsx';
+import { AuthContext } from '../../pages/MainRouter';
+import RightSideNav from '../RightSideNav';
 
 const Nav = ()=>{
   const { classes }  = useStyles();
 
   const mode = useContext(ColorModeContext);
+  const session = useContext(AuthContext);
 
   return(
     <Box className={clsx(classes.root, classes.navBar)}>
       <img src={ReactIcon}/>
       <Box className={clsx(classes.root, classes.transparent)}>
-
         <Link className={classes.transparent} to="/">Home</Link>
+        <Link className={classes.transparent} to="/calendar">Calendar demo</Link>
       </Box>
       <Box className={clsx(classes.root, classes.transparent)}>
         <ModeSwitcher onClick={mode.toogleMode}/>
-        <Button variant='contained'>
-          <Link to="/singup">Singup</Link>
-        </Button>
-        <Button variant='outlined'>
-          <Link to="/login">Login</Link>
-        </Button>
+        <RightSideNav session={session}/>
       </Box>
     </Box>
   );
@@ -58,4 +56,4 @@ const useStyles = makeStyles({name: 'NavBar'})(({palette,spacing})=>({
   }
 }));
 
-export default Nav;
+export default memo(Nav);

@@ -5,20 +5,25 @@ import { makeStyles } from 'tss-react/mui';
 import { Box, MenuItem, TextField } from '@mui/material';
 import schema from './validations';
 import { Gender } from '../../types/constants';
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 import { useRegister } from '../../service/hooks/Auth';
 import { LoadingButton } from '@mui/lab';
+import { AuthContext } from '../MainRouter';
+import { useNavigate } from 'react-router-dom';
 
 const genderList  = Object.entries(Gender);
 
 const Register = ()=>{
   const { classes } = useStyles();
 
+  const {sessionAuth} = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const { register, formState: { errors }, handleSubmit } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const [loading, error, data, execRegister] = useRegister();
+  const [loading, , , execRegister] = useRegister();
 
   const EmailInput = () => (
     <TextField
@@ -65,7 +70,7 @@ const Register = ()=>{
       defaultValue={dayjs().format('YYYY-MM-DD')}
       error={Boolean(errors.date)}
       helperText={String(errors?.date?.message ?? '')}
-      inputProps={{...register('date')}}
+      inputProps={{...register('birthdate')}}
       label='Cumpleaños'
       type='date'/>
   );
@@ -80,8 +85,11 @@ const Register = ()=>{
   );
 
   const _handleSubmit = useCallback(handleSubmit((data)=>{
-    console.log(data);
-    execRegister(data);
+    execRegister(data)
+      .then(({data : {phpssid, username}}: any)=>{
+        sessionAuth(phpssid, username);
+        navigate('/calendar');
+      });
   }), []);
 
   return(

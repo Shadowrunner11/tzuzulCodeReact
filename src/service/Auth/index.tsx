@@ -6,7 +6,7 @@ interface ILoginConfig {
 }
 
 class AuthService{
-  private _baseUrl = 'http://localhost:3000';
+  private _baseUrl = 'http://localhost:3000/api/v1';
   private _loginUrl = this._baseUrl+'/login';
   private _registerUrl = this._baseUrl+'/register';
 

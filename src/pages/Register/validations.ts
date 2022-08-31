@@ -9,7 +9,7 @@ const namesOptions =  yup
 
 const schema = yup.object({
   ...basicSchemConfig,
-  date: yup.date().required(),
+  birthdate: yup.date().required(),
   gender: yup.string().required(),
   lastname: namesOptions,
   name: namesOptions,
